@@ -167,7 +167,7 @@ def test_model(model, dataloaders, image_datasets, device):
     print('Testing Accuracy: {:.4f}%'.format(test_accuracy*100.0))
     
 
-def save_model(trained_model, epochs, optimizer, mean, std, im_size, arch, image_datasets, path_to_save):
+def save_model(trained_model, epochs, optimizer, mean, std, im_size, arch, image_datasets, path_to_save, learning_rate, batch_size):
     '''
         Saves the model
     '''
@@ -178,7 +178,9 @@ def save_model(trained_model, epochs, optimizer, mean, std, im_size, arch, image
         "mean": mean,
         "std": std,
         "im_size": im_size,
-        "arch": arch
+        "arch": arch,
+        "learning_rate": learning_rate,
+        "batch_size": batch_size
     }
     torch.save(trained_model, path_to_save)
     print("Model saved at", path_to_save)
@@ -255,7 +257,7 @@ def main():
     
     # Save the model
     print("\nSaving Model-\n")
-    save_model(model, args.epochs, optimizer, mean, std, im_size, args.arch, image_datasets, args.save_path)
+    save_model(model, args.epochs, optimizer, mean, std, im_size, args.arch, image_datasets, args.save_path, args.learning_rate, args.batch_size)
 
 if __name__ == "__main__":
     main()

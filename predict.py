@@ -72,7 +72,7 @@ def load_label_map(path_to_map):
         Loads a json file containing labels for integer values
         Returns the dictionary
     '''
-    with open('cat_to_name.json', 'r') as f:
+    with open(path_to_map, 'r') as f:
         return json.load(f)
 
 def main():
